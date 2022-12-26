@@ -13,6 +13,204 @@ interface DishesPropTypes {
   title: string;
 }
 
+const dishes: Dish[] = [
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 1,
+    },
+    id: 1,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 2,
+    },
+    id: 2,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 3,
+    },
+    id: 3,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 4,
+    },
+    id: 4,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 5,
+    },
+    id: 5,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 6,
+    },
+    id: 6,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 7,
+    },
+    id: 7,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 8,
+    },
+    id: 8,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 9,
+    },
+    id: 9,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 10,
+    },
+    id: 10,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 11,
+    },
+    id: 11,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 12,
+    },
+    id: 12,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+  {
+    chef: {
+      name: "falakhe",
+      rates: 4,
+      image_url: "/images/avatar.jpg",
+      location: "johanessburg",
+      id: 13,
+    },
+    id: 13,
+    name: "Steak",
+    image_url: "/images/food-image.jpg",
+    price: 5,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
+  },
+];
+
 const Dishes = ({ title }: DishesPropTypes) => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
@@ -43,38 +241,22 @@ const Dishes = ({ title }: DishesPropTypes) => {
               modules={[Pagination, Navigation]}
               className=" w-full "
             >
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
-              <SwiperSlide className="">
-                <Dish />
-              </SwiperSlide>
+              {dishes.map((dish) => (
+                <SwiperSlide className="" key={dish.id}>
+                  <Dish dish={dish} />
+                </SwiperSlide>
+              ))}
             </Swiper>
             <div
               ref={(node) => setPrevEl(node)}
               style={{
                 zIndex: 10,
-                backdropFilter: "blur(2px)",
-                backgroundColor: "rgba(0,0,0,0.2)",
+                // backdropFilter: "blur(2px)",
+                // backgroundColor: "rgba(0,0,0,0.2)",
                 // top: "%",
                 left: "0rem",
               }}
-              className="absolute cursor-pointer backdrop-blur-md bg-white/60 w-14 px-2 top-0 h-full flex items-center"
+              className="absolute cursor-pointer  w-14 px-2 top-0 h-full flex items-center"
             >
               <div
                 // ref={(node) => setPrevEl(node)}
@@ -95,12 +277,12 @@ const Dishes = ({ title }: DishesPropTypes) => {
               ref={(node) => setNextEl(node)}
               style={{
                 zIndex: 10,
-                backdropFilter: "blur(2px)",
-                backgroundColor: "rgba(0,0,0,0.2)",
+                // backdropFilter: "blur(2px)",
+                // backgroundColor: "rgba(0,0,0,0.2)",
                 // top: "%",
                 right: "0rem",
               }}
-              className="absolute backdrop-blur-md bg-white/60 cursor-pointer w-14 px-2 top-0 h-full flex items-center"
+              className="absolute  cursor-pointer w-14 px-2 top-0 h-full flex items-center"
             >
               <div
                 // ref={(node) => setNextEl(node)}
@@ -145,27 +327,11 @@ const Dishes = ({ title }: DishesPropTypes) => {
             // modules={[Pagination, Navigation]}
             className=" w-full "
           >
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
-            <SwiperSlide className="">
-              <Dish />
-            </SwiperSlide>
+            {dishes.map((dish) => (
+              <SwiperSlide className="" key={dish.id}>
+                <Dish dish={dish} />
+              </SwiperSlide>
+            ))}
           </Swiper>
           <div
             style={{
