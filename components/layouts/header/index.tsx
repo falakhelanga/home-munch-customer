@@ -28,8 +28,8 @@ const Header = () => {
   return (
     <div className="w-full h-full">
       <Body className="flex justify-between  items-center h-full w-full ">
-        <div>
-          <span>LOGO</span>
+        <div className=" md:w-[5rem] md:h-[5rem] h-12 w-12 overflow-auto rounded-full">
+          <img className="h-full w-full" src="/images/logo.jpeg" />
         </div>
         <HiOutlineMenuAlt3 size={30} className="block md:hidden" />
         <div className=" gap-8 items-center hidden md:flex">

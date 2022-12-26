@@ -61,12 +61,12 @@ const Home = () => {
         <div className="mb-[6rem] md:mb-[8rem]">
           <Dishes title="popular dishes" />
         </div>
-        <div className="mb-[6rem] md:mb-[8rem]">
+        {/* <div className="mb-[6rem] md:mb-[8rem]">
           <Dishes title="nearby dishes" />
         </div>
         <div className="">
           <Dishes title="today's offers" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
