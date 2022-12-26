@@ -18,18 +18,18 @@ const Dish = ({ dish }: DishPropTypes) => {
       <div className="px-4 py-2 bg-hmRed flex gap-3 items-center">
         <Avatar image="/images/avatar.jpg" />
         <div className="flex-1 flex flex-col items-start">
-          <span className="text-[#f5f5f5]">{chef.name}</span>
+          <span className=" capitalize font-bold text-black">{chef.name}</span>
           <div className="flex gap-1 items-center">
-            <IoLocationSharp className="text-gray-300 " />
-            <span className="text-sm text-[#f5f5f5]">{chef.location}</span>
+            <IoLocationSharp className="text-black" />
+            <span className="text-sm text-black">{chef.location}</span>
           </div>
           <div className="flex gap-1 items-center">
-            <GiMeal className="text-gray-300 " />
-            <span className="text-sm text-[#f5f5f5]">Fillipino</span>{" "}
-            <span className="text-sm text-[#f5f5f5]">|</span>
-            <span className="text-sm text-[#f5f5f5]">Asian</span>
+            <GiMeal className="text-black " />
+            <span className="text-sm text-black">Fillipino</span>{" "}
+            <span className="text-sm text-black">|</span>
+            <span className="text-sm text-black">Asian</span>
           </div>
-          <div className="">
+          <div className="mt-2">
             <Rates />
           </div>
         </div>
