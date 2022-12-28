@@ -3,31 +3,36 @@ import Rates from "../../elements/Rates";
 import { Avatar } from "../../elements/Avatar";
 import { IoLocationSharp } from "react-icons/io5";
 import { GiMeal } from "react-icons/gi";
-import { Dish } from "../../../types/dish";
+import { DishType } from "../../../types/dish";
 import { useCart } from "../../../context/cart";
+import { getObjFromLink } from "../../../helpers";
 
 interface DishPropTypes {
-  dish: Dish;
+  dish: DishType;
 }
 
 const Dish = ({ dish }: DishPropTypes) => {
-  const { chef, name, description } = dish;
+  const { chefLink, name, description } = dish;
   const { addToCart } = useCart();
   return (
     <div className="bg-[#F5F5F5] rounded-md flex flex-col overflow-hidden">
       <div className="px-4 py-2 bg-hmRed flex gap-3 items-center">
-        <Avatar image="/images/avatar.jpg" />
+        <Avatar image={dish?.chefObj?.image} />
         <div className="flex-1 flex flex-col items-start">
-          <span className=" capitalize font-bold text-black">{chef.name}</span>
+          <span className=" capitalize font-bold text-black">
+            {getObjFromLink(chefLink).name}
+          </span>
           <div className="flex gap-1 items-center">
             <IoLocationSharp className="text-black" />
-            <span className="text-sm text-black">{chef.location}</span>
+            <span className="text-sm text-black">
+              {dish?.chefObj?.location}
+            </span>
           </div>
           <div className="flex gap-1 items-center">
             <GiMeal className="text-black " />
-            <span className="text-sm text-black">Fillipino</span>{" "}
-            <span className="text-sm text-black">|</span>
-            <span className="text-sm text-black">Asian</span>
+            <span className="text-sm text-black">{dish?.dishType}</span>
+            {/* <span className="text-sm text-black">|</span>
+            <span className="text-sm text-black">Asian</span> */}
           </div>
           <div className="mt-2">
             <Rates />
@@ -35,22 +40,22 @@ const Dish = ({ dish }: DishPropTypes) => {
         </div>
       </div>
       <div className=" aspect-sqaure">
-        <img src="/images/food-image.jpg" className="h-full w-full" />
+        <img src={dish?.imageGallery[0]} className="h-full w-full" />
       </div>
       <div className="px-4 py-2 ">
         <div className="text-center font-semibold text-lg my-2">
-          <span>{name}</span>
+          <span>{dish?.name}</span>
         </div>
 
         <div className="text-center my-2">
-          <span>{description}</span>
+          <span>{dish?.description}</span>
         </div>
         <div className="flex justify-between items-center">
-          <span className="font-bold">£5.00</span>
+          <span className="font-bold">£{dish?.price.toFixed(2)}</span>
           <span
-            onClick={() => {
-              addToCart({ ...dish, qty: 1 });
-            }}
+            // onClick={() => {
+            //   addToCart({ ...dish, qty: 1 });
+            // }}
             className=" border border-[#FDE056] hover:bg-hmYellow   rounded-full px-4 py-2 font-semibold md:cursor-pointer"
           >
             Add To Cart
