@@ -5,10 +5,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Dish } from "../../types/dish";
+import { DishType } from "../../types/dish";
 import { CartType } from "../../types/cart";
 import { toast } from "react-toastify";
-export type NewItem = Dish & { qty: number };
+export type NewItem = DishType & { cartQty: number };
 interface CartContextType {
   cart: CartType;
   addToCart: (newItem: NewItem) => void;
@@ -46,8 +46,8 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     if (cart?.items?.length === 0) {
       const updatedCart: CartType = {
         items: [newItem],
-        total: newItem.qty * newItem.price,
-        numItems: newItem.qty,
+        total: newItem.cartQty * newItem.price,
+        numItems: newItem.cartQty,
       };
       setCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -63,22 +63,22 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     if (!isItemAlreadyAdded) {
       updatedCart.items = [...updatedCart.items, newItem];
       updatedCart.total = updatedCart.items.reduce(
-        (acc, item) => acc + +item.price * item.qty,
+        (acc, item) => acc + +item.price * item.cartQty,
         0
       );
       updatedCart.numItems = updatedCart.items.reduce(
-        (acc, curr) => acc + +curr.qty,
+        (acc, curr) => acc + +curr.cartQty,
         0
       );
     } else {
-      updatedCart.items[itemAlreadyAddedIndex].qty =
-        updatedCart.items[itemAlreadyAddedIndex].qty + 1;
+      updatedCart.items[itemAlreadyAddedIndex].cartQty =
+        updatedCart.items[itemAlreadyAddedIndex].cartQty + 1;
       updatedCart.total = updatedCart.items.reduce(
-        (acc, item) => acc + +item.price * item.qty,
+        (acc, item) => acc + +item.price * item.cartQty,
         0
       );
       updatedCart.numItems = updatedCart.items.reduce(
-        (acc, curr) => acc + +curr.qty,
+        (acc, curr) => acc + +curr.cartQty,
         0
       );
     }
@@ -118,19 +118,19 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     //     0
     //   );
     // } else {
-    updatedCart.items[itemAlreadyAddedIndex].qty =
-      updatedCart.items[itemAlreadyAddedIndex].qty - 1;
-    if (updatedCart.items[itemAlreadyAddedIndex].qty < 1) {
+    updatedCart.items[itemAlreadyAddedIndex].cartQty =
+      updatedCart.items[itemAlreadyAddedIndex].cartQty - 1;
+    if (updatedCart.items[itemAlreadyAddedIndex].cartQty < 1) {
       updatedCart.items = updatedCart.items.filter(
         (item) => item.id !== isItemAlreadyAdded?.id
       );
 
       updatedCart.total = updatedCart.items.reduce(
-        (acc, item) => acc + +item.price * item.qty,
+        (acc, item) => acc + +item.price * item.cartQty,
         0
       );
       updatedCart.numItems = updatedCart.items.reduce(
-        (acc, curr) => acc + +curr.qty,
+        (acc, curr) => acc + +curr.cartQty,
         0
       );
 
@@ -142,11 +142,11 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     updatedCart.total = updatedCart.items.reduce(
-      (acc, item) => acc + +item.price * item.qty,
+      (acc, item) => acc + +item.price * item.cartQty,
       0
     );
     updatedCart.numItems = updatedCart.items.reduce(
-      (acc, curr) => acc + +curr.qty,
+      (acc, curr) => acc + +curr.cartQty,
       0
     );
 
@@ -168,19 +168,19 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
       (item) => item === isItemAlreadyAdded
     );
 
-    updatedCart.items[itemAlreadyAddedIndex].qty =
-      updatedCart.items[itemAlreadyAddedIndex].qty - 1;
+    updatedCart.items[itemAlreadyAddedIndex].cartQty =
+      updatedCart.items[itemAlreadyAddedIndex].cartQty - 1;
 
     updatedCart.items = updatedCart.items.filter(
       (item) => item.id !== isItemAlreadyAdded?.id
     );
 
     updatedCart.total = updatedCart.items.reduce(
-      (acc, item) => acc + +item.price * item.qty,
+      (acc, item) => acc + +item.price * item.cartQty,
       0
     );
     updatedCart.numItems = updatedCart.items.reduce(
-      (acc, curr) => acc + +curr.qty,
+      (acc, curr) => acc + +curr.cartQty,
       0
     );
 

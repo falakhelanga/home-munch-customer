@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dish from "./Dish";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,228 +8,54 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { doc, onSnapshot, collection } from "firebase/firestore";
+import { doc, onSnapshot, collection, getDoc } from "firebase/firestore";
 
 import Body from "../../elements/Body";
 import { useFireBase } from "../../../context/firebase";
 import { DishType } from "../../../types/dish";
+import { useRouter } from "next/router";
 interface DishesPropTypes {
-  title: string;
+  title?: string;
 }
 
-// const dishes: Dish[] = [
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 1,
-//     },
-//     id: 1,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 2,
-//     },
-//     id: 2,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 3,
-//     },
-//     id: 3,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 4,
-//     },
-//     id: 4,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 5,
-//     },
-//     id: 5,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 6,
-//     },
-//     id: 6,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 7,
-//     },
-//     id: 7,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 8,
-//     },
-//     id: 8,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 9,
-//     },
-//     id: 9,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 10,
-//     },
-//     id: 10,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 11,
-//     },
-//     id: 11,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 12,
-//     },
-//     id: 12,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-//   {
-//     chef: {
-//       name: "falakhe",
-//       rates: 4,
-//       image_url: "/images/avatar.jpg",
-//       location: "johanessburg",
-//       id: 13,
-//     },
-//     id: 13,
-//     name: "Steak",
-//     image_url: "/images/food-image.jpg",
-//     price: 5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. A, praesentium magni! Magnam dolore aut aliquid?",
-//   },
-// ];
-
 const Dishes = ({ title }: DishesPropTypes) => {
+  const router = useRouter();
+  const { id }: any = router.query;
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
   const [dishes, setDishes] = useState<Array<DishType>>([]);
   const { db } = useFireBase();
   // const q = query(collection(db, "cities"), where("state", "==", "CA"));
-  const unsubscribe = onSnapshot(collection(db, "dishes"), (querySnapshot) => {
-    let dishes: any = [];
-    querySnapshot.forEach((doc) => {
-      dishes.push(doc.data());
-    });
-    setDishes(dishes);
-    console.log("Current cities in CA: ", dishes);
-  });
 
+  useEffect(() => {
+    //   (async () => {
+    //     if (id) {
+    //       const docRef = doc(db, "chefs", id, "dishes");
+    //       const docSnap = await getDoc(docRef);
+
+    //       if (docSnap.exists()) {
+    //         console.log("Document data:", docSnap.data());
+    //       } else {
+    //         // doc.data() will be undefined in this case
+    //         console.log("No such document!");
+    //       }
+    //     }
+    //   })();
+    if (id) {
+      const unsubscribe = onSnapshot(
+        collection(db, "chefs", id, "dishes"),
+        (querySnapshot) => {
+          let chefs: any = [];
+          querySnapshot.forEach((doc) => {
+            chefs.push({ ...doc.data(), id: doc.id });
+          });
+          setDishes(chefs);
+          console.log("disehs: ", chefs);
+        }
+      );
+      return () => unsubscribe();
+    }
+  }, [db, id]);
   return (
     <>
       {/* DESKTOP */}
@@ -237,7 +63,7 @@ const Dishes = ({ title }: DishesPropTypes) => {
         <div className="hidden md:block mt-8">
           <h1 className="font-semibold capitalize text-3xl mb-4">{title}</h1>
           <div className=" relative">
-            <Swiper
+            {/* <Swiper
               slidesPerView={4}
               navigation={{ prevEl, nextEl }}
               spaceBetween={25}
@@ -255,15 +81,18 @@ const Dishes = ({ title }: DishesPropTypes) => {
               }}
               modules={[Pagination, Navigation]}
               className=" w-full "
-            >
+            > */}
+            <div className="grid grid-cols-3 gap-4">
               {dishes.length > 0 &&
                 dishes.map((dish) => (
                   <SwiperSlide className="" key={dish.id}>
                     <Dish dish={dish} />
                   </SwiperSlide>
                 ))}
-            </Swiper>
-            <div
+            </div>
+
+            {/* </Swiper> */}
+            {/* <div
               ref={(node) => setPrevEl(node)}
               style={{
                 zIndex: 10,
@@ -288,8 +117,8 @@ const Dishes = ({ title }: DishesPropTypes) => {
               >
                 <BsChevronLeft color="white" />
               </div>
-            </div>
-            <div
+            </div> */}
+            {/* <div
               ref={(node) => setNextEl(node)}
               style={{
                 zIndex: 10,
@@ -312,18 +141,16 @@ const Dishes = ({ title }: DishesPropTypes) => {
               >
                 <BsChevronRight color="white" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </Body>
       {/* MOBILE */}
-      <div className="block md:hidden mt-8">
-        <Body>
-          <h1 className="font-semibold capitalize text-2xl mb-4">{title}</h1>
-        </Body>
+      <Body className="block md:hidden mt-8">
+        <h1 className="font-semibold capitalize text-2xl mb-4">{title}</h1>
 
         <div className="relative">
-          <Swiper
+          {/* <Swiper
             slidesPerView={1.2}
             // navigation={{ prevEl, nextEl }}
             spaceBetween={10}
@@ -342,14 +169,15 @@ const Dishes = ({ title }: DishesPropTypes) => {
             // }}
             // modules={[Pagination, Navigation]}
             className=" w-full "
-          >
+          > */}
+          <div className="grid grid-cols-1 gap-4">
             {dishes.length > 0 &&
               dishes.map((dish) => (
-                <SwiperSlide className="" key={dish.id}>
+                <div className="" key={dish.id}>
                   <Dish dish={dish} />
-                </SwiperSlide>
+                </div>
               ))}
-          </Swiper>
+          </div>
           <div
             style={{
               zIndex: 10,
@@ -395,7 +223,7 @@ const Dishes = ({ title }: DishesPropTypes) => {
             </div>
           </div>
         </div>
-      </div>
+      </Body>
     </>
   );
 };

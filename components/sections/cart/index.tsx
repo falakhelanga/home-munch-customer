@@ -5,6 +5,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import Body from "../../elements/Body";
 import CartItem from "./CartItem";
 import Button from "../../elements/Button";
+import { IoClose } from "react-icons/io5";
 
 const TAX = 2.5;
 const CartDrawer = () => {
@@ -20,8 +21,59 @@ const CartDrawer = () => {
           transform: openCart ? "translateX(0%)" : "translateX(100%)",
           transition: "transform ease 0.5s",
         }}
-        className="h-screen md:w-[27vw] w-screen md:block hidden bg-hmYellow fixed right-0 top-0 z-20"
-      ></div>
+        className="h-screen md:w-[27vw] w-screen md:flex flex-col hidden bg-hmYellow fixed right-0 top-0 z-20 px-4 text-black"
+      >
+        <div className="flex flex-[0.1] justify-between  items-center ">
+          <span className="font-bold text-2xl">My cart</span>
+          <div onClick={toggleCart} className="text-black  cursor-pointer">
+            <IoClose size={30} />
+          </div>
+        </div>
+        {cart.numItems > 0 && (
+          <>
+            <div className="flex-[0.9]  overflow-auto flex flex-col gap-3">
+              {cart.items.map((item) => {
+                return <CartItem item={item} key={item.id} />;
+              })}
+            </div>
+            <div className="flex-[0.1] mb-4">
+              <div className="bg-white p-3 mb-2 rounded-md">
+                <div className="flex w-full justify-between items-center text-gray-400 my-4 ">
+                  <span>Items:</span>
+                  <span className="font-bold">{cart.numItems}</span>
+                </div>
+                <div className="flex w-full justify-between items-center text-gray-400 ">
+                  <span>Subtotal:</span>
+                  <span className="font-bold">£ {cart.total.toFixed(2)}</span>
+                </div>
+                <div className="flex w-full justify-between items-center text-gray-400 my-4 ">
+                  <span>Taxes:</span>
+                  <span className="font-bold">£ {TAX.toFixed(2)}</span>
+                </div>
+                <div className="flex w-full justify-between items-center text-gray-400 my-4 ">
+                  <span>Total:</span>
+                  <span className="font-bold">£ {total}</span>
+                </div>
+              </div>
+
+              <Button className="text-white">CHECKOUT</Button>
+            </div>
+          </>
+        )}
+        {cart.numItems === 0 && (
+          <>
+            <div className=" flex-[0.9] w-full flex justify-center items-center text-[#F8EEE0]  flex-col">
+              <FaCartPlus size={200} />
+              <div className="text-black mt-[4rem] text-center px-4">
+                <h1 className="text-2xl font-bold">Your cart is empty</h1>
+                <p className="mt-5 text-gray-600">
+                  Looks like you haven&apos;t added any dishes to you cart yet.
+                </p>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
 
       {/* mobile */}
 

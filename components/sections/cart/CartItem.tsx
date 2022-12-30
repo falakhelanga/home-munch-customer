@@ -17,7 +17,11 @@ const CartItem = ({ item }: { item: CartItem }) => {
         <BsFillTrashFill className="" size={20} />
       </div>
       <div className="rounded-md  overflow-hidden w-[5rem] aspect-square ">
-        <img className="h-full w-full" src={item.image_url} alt="dish image" />
+        <img
+          className="h-full w-full"
+          src={item.imageGallery[0]}
+          alt="dish image"
+        />
       </div>
       <div className="flex flex-col text-gray-400 font-bold h-full items-start justify-center flex-1 ">
         <span>{item.name}</span>

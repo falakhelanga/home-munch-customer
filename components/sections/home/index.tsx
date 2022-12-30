@@ -4,6 +4,7 @@ import Body from "../../elements/Body";
 import { MdDinnerDining, MdFreeBreakfast, MdLunchDining } from "react-icons/md";
 import { GiHotMeal } from "react-icons/gi";
 import Dishes from "./Dishes";
+import Chefs from "./Chefs";
 const Home = () => {
   return (
     <div className="mt-4">
@@ -59,7 +60,10 @@ const Home = () => {
       </div>
       <div className="mt-[6rem]">
         <div className="mb-[6rem] md:mb-[8rem]">
-          <Dishes title="popular dishes" />
+          {/* <Dishes title="popular dishes" /> */}
+          <Body>
+            <Chefs />
+          </Body>
         </div>
         {/* <div className="mb-[6rem] md:mb-[8rem]">
           <Dishes title="nearby dishes" />

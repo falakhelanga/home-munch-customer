@@ -1,6 +1,6 @@
-import { Dish } from "./dish";
+import { Dish, DishType } from "./dish";
 
-export type CartItem = Dish & { qty: number };
+export type CartItem = DishType & { cartQty: number };
 export interface CartType {
   items: Array<CartItem>;
   total: number;

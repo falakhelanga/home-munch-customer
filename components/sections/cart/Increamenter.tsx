@@ -5,7 +5,7 @@ import { useCart } from "../../../context/cart";
 const Increamentor = ({ item }: { item: CartItem }) => {
   const { addToCart, removeFromCart } = useCart();
   return (
-    <div className="flex items-center">
+    <div className="flex items-center cursor-pointer">
       <span
         onClick={() => {
           // addToCart(item)
@@ -15,7 +15,7 @@ const Increamentor = ({ item }: { item: CartItem }) => {
       >
         <AiOutlineMinus size={20} />
       </span>
-      <span className="px-2 border-y py-[0.3rem]">{item.qty}</span>
+      <span className="px-2 border-y py-[0.3rem]">{item.cartQty}</span>
       <span
         onClick={() => {
           addToCart(item);

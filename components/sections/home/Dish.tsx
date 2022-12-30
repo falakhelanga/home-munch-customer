@@ -6,6 +6,9 @@ import { GiMeal } from "react-icons/gi";
 import { DishType } from "../../../types/dish";
 import { useCart } from "../../../context/cart";
 import { getObjFromLink } from "../../../helpers";
+import { BsPlusLg } from "react-icons/bs";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper";
 
 interface DishPropTypes {
   dish: DishType;
@@ -14,53 +17,45 @@ interface DishPropTypes {
 const Dish = ({ dish }: DishPropTypes) => {
   const { chefLink, name, description } = dish;
   const { addToCart } = useCart();
+  console.log(dish, "dish");
   return (
-    <div className="bg-[#F5F5F5] rounded-md flex flex-col overflow-hidden">
-      <div className="px-4 py-2 bg-hmRed flex gap-3 items-center">
-        <Avatar image={dish?.chefObj?.image} />
-        <div className="flex-1 flex flex-col items-start">
-          <span className=" capitalize font-bold text-black">
-            {getObjFromLink(chefLink).name}
-          </span>
-          <div className="flex gap-1 items-center">
-            <IoLocationSharp className="text-black" />
-            <span className="text-sm text-black">
-              {dish?.chefObj?.location}
-            </span>
-          </div>
-          <div className="flex gap-1 items-center">
-            <GiMeal className="text-black " />
-            <span className="text-sm text-black">{dish?.dishType}</span>
-            {/* <span className="text-sm text-black">|</span>
-            <span className="text-sm text-black">Asian</span> */}
-          </div>
-          <div className="mt-2">
-            <Rates />
-          </div>
-        </div>
+    <div className="bg-[#F5F5F5] rounded-md flex flex-col overflow-hidden relative">
+      <div
+        onClick={() => {
+          addToCart({ ...dish, cartQty: 1 });
+        }}
+        className="z-[5] text-sm bg-white rounded-lg p-1 text-hmRed gap-2 cursor-pointer  flex items-center justify-center absolute top-4 right-4"
+      >
+        <BsPlusLg />
+        <span>ADD</span>
       </div>
-      <div className=" aspect-sqaure">
-        <img src={dish?.imageGallery[0]} className="h-full w-full" />
+      <div className="flex-[0.7] overflow-hidden">
+        <Swiper
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          loop={true}
+          modules={[Pagination, Autoplay]}
+          // pagination={{
+          //   clickable: true,
+          // }}
+        >
+          {dish?.imageGallery.map((image, idx) => {
+            return (
+              <SwiperSlide key={idx}>
+                <img className="h-full w-full" src={image} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
-      <div className="px-4 py-2 ">
-        <div className="text-center font-semibold text-lg my-2">
-          <span>{dish?.name}</span>
-        </div>
-
-        <div className="text-center my-2">
-          <span>{dish?.description}</span>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className="font-bold">£{dish?.price.toFixed(2)}</span>
-          <span
-            // onClick={() => {
-            //   addToCart({ ...dish, qty: 1 });
-            // }}
-            className=" border border-[#FDE056] hover:bg-hmYellow   rounded-full px-4 py-2 font-semibold md:cursor-pointer"
-          >
-            Add To Cart
-          </span>
-        </div>
+      <div className="py-4 px-2 flex flex-col">
+        <span className="font-semibold text-lg">{dish.name}</span>
+        <span>£ {dish.price.toFixed(2)}</span>
       </div>
     </div>
   );
