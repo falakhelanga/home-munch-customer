@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <div className="  bg-[#F5F5F5] h-full">
       <div className="flex justify-around h-full items-center">
-        <Link className="flex flex-col items-center text-hmYellow " href={"#"}>
+        <Link className="flex flex-col items-center text-hmYellow " href={"/"}>
           <AiFillHome size={26} />
           <span>Home</span>
         </Link>

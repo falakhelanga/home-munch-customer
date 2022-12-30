@@ -16,7 +16,7 @@ const LayOut = ({ children }: { children: React.ReactNode }) => {
           <Main>{children}</Main>
         </div>
 
-        <div className=" h-[8vh] w-full md:hidden block ">
+        <div className=" h-[8vh] w-full md:hidden block sticky bottom-0  ">
           <Footer />
         </div>
       </div>
