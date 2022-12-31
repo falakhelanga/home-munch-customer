@@ -68,7 +68,7 @@ const DishesPage = () => {
           alt="profile image"
         />
       </Body>
-      <Body>
+      <Body className="block md:hidden">
         <div className="flex flex-col items-center mt-2">
           <h2 className="text-2xl font-bold capitalize mb-2">
             {chef?.kitchenName}
