@@ -28,19 +28,6 @@ const Dishes = ({ title }: DishesPropTypes) => {
   // const q = query(collection(db, "cities"), where("state", "==", "CA"));
 
   useEffect(() => {
-    //   (async () => {
-    //     if (id) {
-    //       const docRef = doc(db, "chefs", id, "dishes");
-    //       const docSnap = await getDoc(docRef);
-
-    //       if (docSnap.exists()) {
-    //         console.log("Document data:", docSnap.data());
-    //       } else {
-    //         // doc.data() will be undefined in this case
-    //         console.log("No such document!");
-    //       }
-    //     }
-    //   })();
     if (id) {
       const unsubscribe = onSnapshot(
         collection(db, "chefs", id, "dishes"),
