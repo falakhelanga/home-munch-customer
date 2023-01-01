@@ -14,6 +14,7 @@ import Body from "../../elements/Body";
 import { useFireBase } from "../../../context/firebase";
 import { DishType } from "../../../types/dish";
 import { useRouter } from "next/router";
+import DishDiscriptionModal from "./DishDiscriptionModal";
 interface DishesPropTypes {
   title?: string;
 }
@@ -46,6 +47,7 @@ const Dishes = ({ title }: DishesPropTypes) => {
   return (
     <>
       {/* DESKTOP */}
+
       <Body>
         <div className="hidden md:block mt-8">
           <h1 className="font-semibold capitalize text-3xl mb-4">{title}</h1>

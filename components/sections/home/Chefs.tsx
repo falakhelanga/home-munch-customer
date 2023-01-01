@@ -14,6 +14,7 @@ const Chefs = () => {
       querySnapshot.forEach((doc) => {
         chefs.push({ ...doc.data(), id: doc.id });
       });
+
       setChefs(chefs);
       console.log("chefs: ", chefs);
     });

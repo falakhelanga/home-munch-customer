@@ -21,6 +21,7 @@ export interface DishType {
   name: string;
   qty: number;
   price: number;
+  cuisineType: string;
   chefObj: {
     image: string;
     name: string;

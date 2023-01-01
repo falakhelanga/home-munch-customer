@@ -8,7 +8,10 @@ import {
 import { DishType } from "../../types/dish";
 import { CartType } from "../../types/cart";
 import { toast } from "react-toastify";
-export type NewItem = DishType & { cartQty: number };
+export type NewItem = DishType & {
+  cartQty: number;
+  specialInstructions?: string;
+};
 interface CartContextType {
   cart: CartType;
   addToCart: (newItem: NewItem) => void;
