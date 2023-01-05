@@ -12,7 +12,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
         onClick={() => {
           deleteItem(item);
         }}
-        className="text-hmRed absolute top-2 right-5"
+        className="text-hmRed absolute top-2 right-5 cursor-pointer"
       >
         <BsFillTrashFill className="" size={20} />
       </div>

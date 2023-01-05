@@ -32,4 +32,5 @@ const facebookProvider = new FacebookAuthProvider();
 const user = auth.currentUser;
 export const functions = {
   db,
+  auth,
 };

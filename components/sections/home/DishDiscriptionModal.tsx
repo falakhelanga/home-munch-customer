@@ -7,10 +7,12 @@ import Form from "../../elements/Form";
 import Button from "../../elements/Button";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useCart } from "../../../context/cart";
+import { useModal } from "../../../context/modal";
 
 const DishDiscriptionModal = () => {
   const { selectedDish } = useDish();
   const { addToCart } = useCart();
+  const { closeModal } = useModal();
   console.log(selectedDish, "selected");
   const [qty, setQty] = useState(1);
 
@@ -68,10 +70,10 @@ const DishDiscriptionModal = () => {
           onSubmit={(values) => {
             addToCart({
               ...selectedDish!!,
-              cartQty: qty,
               specialInstructions: values.specialInstructions,
+              cartQty: qty,
             });
-            console.log(values);
+            closeModal();
           }}
         >
           <TextAreaInput

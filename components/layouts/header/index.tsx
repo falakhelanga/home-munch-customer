@@ -4,6 +4,10 @@ import Link from "next/link";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { BsFillCartFill } from "react-icons/bs";
 import { useCart } from "../../../context/cart";
+import { useModal } from "../../../context/modal";
+import { useAuth } from "../../../context/auth";
+import { useDrawer } from "../../../context/drawer/drawer";
+
 interface NavItemsType {
   name: string;
   link: string;
@@ -18,19 +22,25 @@ const navItems: NavItemsType[] = [
     link: "#",
   },
   {
-    name: "dishes",
+    name: "cook with us",
     link: "#",
   },
 ];
 
 const Header = () => {
   const { cart, toggleCart } = useCart();
+  const { openModal } = useModal();
+  const { user } = useAuth();
+  const { openDrawer } = useDrawer();
   return (
     <div className="w-full h-full">
       <Body className="flex justify-between  items-center h-full w-full ">
-        <div className=" md:w-[5rem] md:h-[5rem] h-12 w-12 overflow-auto rounded-full">
+        <Link
+          href="/"
+          className=" md:w-[5rem] md:h-[5rem] h-12 w-12 overflow-auto rounded-full"
+        >
           <img className="h-full w-full" src="/images/logo.jpeg" />
-        </div>
+        </Link>
         <HiOutlineMenuAlt3 size={30} className="block md:hidden" />
         <div className=" gap-8 items-center hidden md:flex">
           <div
@@ -53,9 +63,28 @@ const Header = () => {
             );
           })}
 
-          <span className="bg-hmYellow rounded-full py-2 px-3 font-semibold">
-            COOK WITH US
-          </span>
+          {!user && (
+            <span
+              onClick={() => {
+                openModal("auth");
+              }}
+              className="bg-hmYellow rounded-full py-2 px-3 font-semibold cursor-pointer"
+            >
+              SIGN IN
+            </span>
+          )}
+          {user && (
+            <div
+              onClick={() => {
+                openDrawer("profile", "profile");
+              }}
+            >
+              <HiOutlineMenuAlt3
+                size={30}
+                className=" text-black cursor-pointer"
+              />
+            </div>
+          )}
         </div>
       </Body>
     </div>

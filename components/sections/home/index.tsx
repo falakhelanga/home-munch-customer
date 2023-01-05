@@ -8,7 +8,7 @@ import Chefs from "./Chefs";
 const Home = () => {
   return (
     <div className="mt-4">
-      <div className=" bg-[#F9EFE1] pt-2 md:pt-0 ">
+      <div className=" bg-[#F9EFE1] pt-6 md:pt-0 ">
         <Body className="grid grid-cols-1 md:grid-cols-2 items-center">
           <div>
             <h1
@@ -23,7 +23,7 @@ const Home = () => {
             >
               you love😍
             </h1>
-            <p className="my-6">
+            <p className="my-6 md:text-left text-center">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Asperiores, nihil? Natus nihil earum qui perspiciatis quod a
               accusantium. Cum aperiam veniam unde

@@ -3,11 +3,13 @@ import Header from "./header";
 import Main from "./main";
 import Footer from "./footer";
 import CartDrawer from "../sections/cart";
+import SideDrawer from "../elements/SideDrawer";
 
 const LayOut = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <CartDrawer />
+      <SideDrawer />
       <div className="flex flex-col">
         <div className=" h-[10vh] w-full">
           <Header />

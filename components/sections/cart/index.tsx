@@ -6,13 +6,23 @@ import Body from "../../elements/Body";
 import CartItem from "./CartItem";
 import Button from "../../elements/Button";
 import { IoClose } from "react-icons/io5";
+import { useAuth } from "../../../context/auth";
+import { useModal } from "../../../context/modal/index";
 
 const TAX = 2.5;
 const CartDrawer = () => {
   const { toggleCart, openCart, cart } = useCart();
+  const { user } = useAuth();
+  const { openModal } = useModal();
   const total = useMemo(() => {
     return (cart.total + TAX).toFixed(2);
   }, [cart]);
+
+  const handleCheckOut = () => {
+    if (!user) {
+      openModal("auth");
+    }
+  };
   return (
     <div>
       {/* desktop */}
@@ -56,7 +66,9 @@ const CartDrawer = () => {
                 </div>
               </div>
 
-              <Button className="text-white">CHECKOUT</Button>
+              <Button onClick={handleCheckOut} className="text-white">
+                CHECKOUT
+              </Button>
             </div>
           </>
         )}

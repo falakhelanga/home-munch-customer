@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 
 import DishDiscriptionModal from "../sections/home/DishDiscriptionModal";
 import { useModal } from "../../context/modal";
+import AuthModal from "../sections/auth/AuthModal";
 
 interface ModalPropTypes {
   // children: React.ReactNode;
@@ -31,6 +32,7 @@ const Modal = ({
       ></div>
       <div ref={modalRef} className={`${contentClassName}  z-[22]`}>
         {isModalOpen === "description" && <DishDiscriptionModal />}
+        {isModalOpen === "auth" && <AuthModal />}
       </div>
     </div>
   );
